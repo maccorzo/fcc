@@ -1,2 +1,2 @@
 # FreeCodeCamp
-Here is some of mine [FreeCodeCamp](https://www.freecodecamp.com) projects.
+Here is some of my [FreeCodeCamp](https://www.freecodecamp.com) programming projects.
