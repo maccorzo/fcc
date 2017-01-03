@@ -9,6 +9,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
+	<div class="main" id="app">
+		<div class="weather">
+			<div id="icon" class="text-center"><h2><i id="wIcon"></i></h2></div>
+			<h2 class="text-center" id="city">{{ name }}, {{ country }}</h2>
+			<div id="temperature" class="text-center">{{ temperature }}</div>
+			<div id="clouds" class="text-center"> {{ clouds }}</div>
+			<div id="wind" class="text-center">{{ windSpeed }} @ {{ windDir }}</div>
+			<div class="text-center add-margin-top">
+
+				<input type="button" @click="toggleClickC()" value="C" class="btn btn-success cel">
+				<input type="button" @click="toggleClickF()" value="F" class="btn btn-default fah">
+			</div>
+			<div class="text-center add-margin-top text-small">Photos from <a href="flickr.com">flickr.com</a>. Identified as being free of known restrictions under copyright law</div>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 	<script src="js/app-compiled.js"></script>
 </body>
 </html>
