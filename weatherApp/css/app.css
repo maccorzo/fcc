@@ -1,0 +1,28 @@
+html, body {
+    height: 100%;
+    background-color: white;
+    font-size: 16px;
+}
+.main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.main #city {
+    margin: 5% 15% 5% 15%;
+}
+.weather {
+    width: 500px;
+    height: 370px;
+    border: 1px solid #f5f5f5;
+    background-color: rgba(255,255,255, 0.6);
+}
+.add-margin-top {
+    margin-top: 3em;
+}
+.text-small {
+    font-size: 12px;
+}
