@@ -26,26 +26,29 @@ new Vue({
       '50': 'https://c2.staticflickr.com/8/7545/15960883932_e75552cc5d_k.jp'
     },
     icons: {
-      '01': 'wi wi-day-sunny',
-      '02': 'wi wi-day-cloudy',
-      '03': 'wi wi-cloudy',
-      '04': 'wi wi-cloud',
-      '09': 'wi wi-showers',
-      '10': 'wi wi-day-rain',
-      '11': 'wi wi-thunderstorm',
-      '13': 'wi wi-snow',
-      '50': 'wi wi-fo'
+      '01': 'wi-day-sunny',
+      '02': 'wi-day-cloudy',
+      '03': 'wi-cloudy',
+      '04': 'wi-cloud',
+      '09': 'wi-showers',
+      '10': 'wi-day-rain',
+      '11': 'wi-thunderstorm',
+      '13': 'wi-snow',
+      '50': 'wi-fo'
 
     }
   },
 
   methods: {
+    el: function el(e) {
+      return document.querySelector(e);
+    },
     addClass: function addClass(e, c) {
-      var el = document.querySelector(e);
+      var el = this.el(e);
       el.classList.add(c);
     },
     removeClass: function removeClass(e, c) {
-      var el = document.querySelector(e);
+      var el = this.el(e);
       el.classList.remove(c);
     },
     toggleClickC: function toggleClickC() {
@@ -91,9 +94,10 @@ new Vue({
       this.weatherIcon = data.weather[0].icon;
       this.windSpeed = 'Wind ' + data.wind.speed.toFixed(1) + ' ' + this.units[2];
       this.windDir = this.getDirection(data.wind.deg);
-      $('#wIcon').removeClass().addClass(this.icons[this.weatherIcon.substring(0, 2)]);
-      $('body').css('background', 'url(' + this.photos[this.weatherIcon.substring(0, 2)] + ') no-repeat center center fixed');
-      $('body').css('background-size', 'cover');
+      this.addClass('#wIcon', 'wi');
+      this.addClass('#wIcon', this.icons[this.weatherIcon.substring(0, 2)]);
+      this.el('body').style.background = 'url(' + this.photos[this.weatherIcon.substring(0, 2)] + ') no-repeat center center fixed';
+      this.el('body').style.backgroundSize = 'cover';
     },
     getDirection: function getDirection(direction) {
       var dirArr = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'];
