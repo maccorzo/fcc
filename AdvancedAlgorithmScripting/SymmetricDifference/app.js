@@ -1,6 +1,21 @@
 function sym(args) {
-  return args;
+  var arr = Array.prototype.slice.call(arguments);
+
+  rArr = arr[0];
+  for (var i = 1 ; i < arr.length ; i++) {
+
+      rArr = arr[i].filter(function(el) {
+        return rArr.indexOf(el) == -1;
+      }).concat(rArr.filter(function(el) {
+        return arr[i].indexOf(el) == -1
+      })).sort();
+    
+  }
+  return rArr;
 }
 
-sym([1, 2, 3], [5, 2, 1, 4]);
 
+console.log(sym([1, 2, 3], [5, 2, 1, 4]));
+//
+//
+console.log(sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]));
