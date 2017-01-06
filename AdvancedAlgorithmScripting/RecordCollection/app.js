@@ -30,7 +30,24 @@ var collectionCopy = JSON.parse(JSON.stringify(collection));
 
 // Only change code below this line
 function updateRecords(id, prop, value) {
-  return collection;
+  for (var key in collection) {
+    if (key == id) {
+      if (value === '' && collection[key].hasOwnProperty(prop)) {
+        delete collection[key][prop];
+        return collection;
+      }
+      if (prop == 'tracks') {
+        if (!collection[key].hasOwnProperty(prop)) {
+          collection[key][prop] = [];
+        }
+        collection[key][prop].push(value);
+        return collection;
+      }
+      collection[key][prop] = value;
+      return collection;
+    }
+  }
 }
 // Alter values below to test your code
-updateRecords(5439, "artist", "ABBA");
+console.log(updateRecords(5439, "artist", "ABBA"));
+
