@@ -1,14 +1,21 @@
 function sym(args) {
   var arr = Array.prototype.slice.call(arguments);
 
-  rArr = arr[0];
-  for (var i = 1 ; i < arr.length ; i++) {
+  rArr = [];
 
-      rArr = arr[i].filter(function(el) {
-        return rArr.indexOf(el) == -1;
-      }).concat(rArr.filter(function(el) {
-        return arr[i].indexOf(el) == -1
-      })).sort();
+  for (var i = 0 ; i < arr.length ; i++) {
+
+    rArr = arr[i]
+    .filter(function(elem, index, self) {
+      return index == self.indexOf(elem);
+    })
+    .filter(function(el) {
+      return rArr.indexOf(el) == -1;
+    })
+    .concat(rArr.filter(function(el) {
+      return arr[i].indexOf(el) == -1
+    }))
+    .sort();
     
   }
   return rArr;
