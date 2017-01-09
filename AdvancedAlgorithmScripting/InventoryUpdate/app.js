@@ -10,9 +10,9 @@ function updateInventory(arr1, arr2) {
   // All inventory must be accounted for or you're fired!
 
   // update values
-  arr2.forEach( function(el2) {
+  arr2.forEach(function(el2) {
     var inventedItem = false;
-    arr1.forEach( function(el1, i) {
+    arr1.forEach(function(el1, i) {
       if (el1[1] === el2[1]) {
         arr1[i][0] += el2[0];
         inventedItem = true;
@@ -22,8 +22,15 @@ function updateInventory(arr1, arr2) {
       arr1.push(el2);
     }
   });
-
-  return arr1;
+  // sort array and return it
+  return arr1.sort(function(a, b) {
+    if (a[1] === b[1]) {
+      return 0;
+    }
+    else {
+      return (a[1] < b[1]) ? -1 : 1;
+    }
+  });
 }
 
 // Example inventory lists
