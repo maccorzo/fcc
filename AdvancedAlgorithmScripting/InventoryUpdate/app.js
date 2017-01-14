@@ -24,12 +24,7 @@ function updateInventory(arr1, arr2) {
   });
   // sort array and return it
   return arr1.sort(function(a, b) {
-    if (a[1] === b[1]) {
-      return 0;
-    }
-    else {
-      return (a[1] < b[1]) ? -1 : 1;
-    }
+    return (a[1] > b[1]) ? 1 : -1;
   });
 }
 
