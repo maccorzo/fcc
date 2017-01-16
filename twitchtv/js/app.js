@@ -1,7 +1,6 @@
 /*eslint-disable */
 const apiUrlUsers = 'https://wind-bow.gomix.me/twitch-api/users/';
 const apiUrlStreams = 'https://wind-bow.gomix.me/twitch-api/streams/';
-const streamers = ['EULCS1','ESL_SC2', 'OgamingSC2', 'cretetion', 'freecodecamp', 'storbeck', 'habathcx', 'RobotCaleb', 'noobs2ninjas']
 
 function ajax(url) {
   fetch(url)
@@ -10,6 +9,7 @@ function ajax(url) {
 }
 
 function* steps() {
+  const streamers = ['EULCS1','ESL_SC2', 'OgamingSC2', 'cretetion', 'freecodecamp', 'storbeck', 'habathcx', 'RobotCaleb', 'noobs2ninjas']
   const userJson = [];
   const streamJson = [];
   userJson.push(yield ajax(apiUrlUsers+streamers[0]));
