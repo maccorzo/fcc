@@ -20,13 +20,24 @@ function* steps() {
     index++;
   }
   yield parseData(userJson, streamJson);
-
 }
 
 function parseData(users, streams) {
   console.log(users, streams);
-}
+  let template = '';
+  const el = document.querySelector('#app')
 
+  for (let x = 0; x < users.length; x += 1) {
+    const {display_name, logo, name, bio} = users[x];
+    const temp = `
+    <h3>${display_name}</h3>
+    <img src="${logo}"> 
+    <p>${bio !== null ? bio : ''}</p>
+    `;
+    template += temp;
+  }
+
+  el.innerHTML = template;
+}
 const gen = steps();
 gen.next();
-
