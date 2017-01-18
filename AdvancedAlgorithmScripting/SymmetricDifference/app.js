@@ -1,7 +1,7 @@
 function sym(args) {
   // convert arguments object to array
   var arr = Array.prototype.slice.call(arguments);
-  rArr = [];
+  var rArr = [];
 
   for (var i = 0 ; i < arr.length ; i++) {
     rArr = arr[i]
