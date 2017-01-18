@@ -29,10 +29,15 @@ function parseData(users, streams) {
 
   for (let x = 0; x < users.length; x += 1) {
     const {display_name, logo, name, bio} = users[x];
+    const online = streams[x].stream !== null;
     const temp = `
-    <h3>${display_name}</h3>
-    <img src="${logo}"> 
-    <p>${bio !== null ? bio : ''}</p>
+    <div class="box ${online === true ? 'online' : 'offline'}">
+      <img class="img img-responsive" src="${logo}"> 
+      <div class="info-box">
+        <h3>${display_name}</h3>
+        <p>${bio !== null ? bio : ''}</p>
+      </div>
+    </div>
     `;
     template += temp;
   }

@@ -1,0 +1,20 @@
+.box {
+  border: 1px solid black;
+  display: flex;
+  margin: 1em;
+  padding: 0.25em; 
+}
+.box img {
+  height: 150px;
+}
+.info-box {
+  margin: 0 1em;
+}
+
+.online {
+  background-color: green;
+}
+
+.offline {
+  background-color: red;
+}
