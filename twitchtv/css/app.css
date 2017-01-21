@@ -1,5 +1,4 @@
 .box {
-  border: 1px solid black;
   display: flex;
   margin: 1em;
   padding: 0.25em; 
@@ -12,9 +11,9 @@
 }
 
 .online {
-  background-color: green;
+  background-color: #6cba7a;
 }
 
 .offline {
-  background-color: red;
+  background-color: #e7939a;
 }
