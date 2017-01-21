@@ -16,7 +16,6 @@ addClickListener(el('#btn_all'));
 addClickListener(el('#btn_online'), true);
 addClickListener(el('#btn_offline'), false);
 
-
 function ajax(url) {
   fetch(url)
   .then(data => data.json())
@@ -47,7 +46,7 @@ function showData(filter) {
   for (let x = 0; x < filteredData.length; x += 1) {
     const {display_name, logo, name, bio, online} = filteredData[x];
     const temp = `
-    <div class="box ${online === true ? 'online' : 'offline'}">
+    <div class="box ${online === true ? 'online' : 'offline'} animated slideInLeft">
     <img class="img img-responsive" src="${logo}"> 
     <div class="info-box">
     <h3>${display_name}</h3>
