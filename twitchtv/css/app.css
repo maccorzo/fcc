@@ -17,3 +17,7 @@
 .offline {
   background-color: #e7939a;
 }
+
+.loading {
+  margin-top: 3em;
+}
