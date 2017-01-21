@@ -3,6 +3,20 @@ const apiUrlUsers = 'https://wind-bow.gomix.me/twitch-api/users/';
 const apiUrlStreams = 'https://wind-bow.gomix.me/twitch-api/streams/';
 const jsonData = [];
 
+function addClickListener(el, online) {
+  el.addEventListener('click', function() {
+    showData(online);
+  });
+}
+function el(element) {
+  return document.querySelector(element);
+}
+
+addClickListener(el('#btn_all'));
+addClickListener(el('#btn_online'), true);
+addClickListener(el('#btn_offline'), false);
+
+
 function ajax(url) {
   fetch(url)
   .then(data => data.json())
