@@ -2,6 +2,7 @@
   display: flex;
   margin: 1em;
   padding: 0.25em; 
+  animation-duration: 1s;
 }
 .box img {
   height: 150px;
@@ -16,6 +17,9 @@
 
 .offline {
   background-color: #e7939a;
+}
+.btn_row {
+  margin-top: 3em;
 }
 
 .loading {

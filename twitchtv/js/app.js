@@ -38,26 +38,35 @@ function* steps() {
 }
 
 function showData(filter) {
-  console.log(jsonData);
   let template = '';
-  const el = document.querySelector('#app')
+  let timeout = 1;
   const filteredData = filter === undefined ? jsonData : jsonData.filter(el => el.online === filter);
+  if (el('.box') != null) {
 
-  for (let x = 0; x < filteredData.length; x += 1) {
-    const {display_name, logo, name, bio, online} = filteredData[x];
-    const temp = `
-    <div class="box ${online === true ? 'online' : 'offline'} animated slideInLeft">
-    <img class="img img-responsive" src="${logo}"> 
-    <div class="info-box">
-    <h3>${display_name}</h3>
-    <p>${bio !== null ? bio : ''}</p>
-    </div>
-    </div>
-    `;
-    template += temp;
-  }
+    const temp = document.querySelectorAll('.box');
+    temp.forEach(el => el.classList.add('bounceOut'));
+    timeout = 750;
+  } 
 
-  el.innerHTML = template;
+  setTimeout(function() {
+    for (let x = 0; x < filteredData.length; x += 1) {
+      const {display_name, logo, name, bio, online} = filteredData[x];
+      const temp = `
+      <div class="box ${online === true ? 'online' : 'offline'} animated bounceIn">
+      <img class="img img-responsive" src="${logo}"> 
+      <div class="info-box">
+      <h3>${display_name}</h3>
+      <p>${bio !== null ? bio : ''}</p>
+      </div>
+      </div>
+      `;
+      template += temp;
+    }
+
+
+    el('#app').innerHTML = template;
+  }, timeout);
 }
+
 const gen = steps();
 gen.next();
