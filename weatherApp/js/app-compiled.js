@@ -9,10 +9,12 @@ new Vue({
     name: 'Loading . ',
     country: '...',
     temperature: '',
+    temperatureArr: [],
     clouds: '',
     weatherIcon: '',
     windDir: '',
     windSpeed: '',
+    windSpeedArr: [],
     celsius: true,
     photos: {
       '01': 'https://c1.staticflickr.com/9/8658/16173761684_2468bf3588_k.jpg',
@@ -57,7 +59,8 @@ new Vue({
       this.removeClass('.fah', 'btn-success');
       this.addClass('.fah', 'btn-default');
       this.celsius = true;
-      this.fetchLocationData();
+      this.temperature = this.temperatureArr[0];
+      this.windSpeed = this.windSpeedArr[0];
     },
     toggleClickF: function toggleClickF() {
       this.removeClass('.fah', 'btn-default');
@@ -65,7 +68,8 @@ new Vue({
       this.removeClass('.cel', 'btn-success');
       this.addClass('.cel', 'btn-default');
       this.celsius = false;
-      this.fetchLocationData();
+      this.temperature = this.temperatureArr[1];
+      this.windSpeed = this.windSpeedArr[1];
     },
     fetchLocationData: function fetchLocationData() {
       var _this = this;
@@ -89,10 +93,12 @@ new Vue({
     setWeatherData: function setWeatherData(data) {
       this.name = data.name;
       this.country = data.sys.country;
-      this.temperature = Math.floor(data.main.temp) + '\xB0 ' + this.units[1];
+      this.temperatureArr = [Math.floor(data.main.temp) + '\xB0 ' + this.metric[1], Math.floor(data.main.temp * 7 / 5 + 32) + '\xB0 ' + this.imperial[1]];
+      this.temperature = this.temperatureArr[0];
       this.clouds = data.weather[0].main;
       this.weatherIcon = data.weather[0].icon;
-      this.windSpeed = 'Wind ' + data.wind.speed.toFixed(1) + ' ' + this.units[2];
+      this.windSpeedArr = ['Wind ' + data.wind.speed.toFixed(1) + ' ' + this.metric[2], 'Wind ' + (data.wind.speed * 3600 / 1609).toFixed(1) + ' ' + this.imperial[2]];
+      this.windSpeed = this.windSpeedArr[0];
       this.windDir = this.getDirection(data.wind.deg);
       this.addClass('#wIcon', 'wi');
       this.addClass('#wIcon', this.icons[this.weatherIcon.substring(0, 2)]);
