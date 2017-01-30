@@ -43,29 +43,13 @@ new Vue({
     el(e) {
       return document.querySelector(e);
     },
-    addClass(e, c) {
-      const el = this.el(e);
-      el.classList.add(c);
-    },
-    removeClass(e, c) {
-      const el = this.el(e);
-      el.classList.remove(c);
-    },
 
     toggleClickC() {
-      //this.removeClass('.cel', 'btn-default');
-      //this.addClass('.cel', 'btn-success');
-      //this.removeClass('.fah', 'btn-success');
-      //this.addClass('.fah', 'btn-default');
       this.celsius = true;
       this.temperature = this.temperatureArr[0];
       this.windSpeed = this.windSpeedArr[0];
     },
     toggleClickF() {
-      //this.removeClass('.fah', 'btn-default');
-      //this.addClass('.fah', 'btn-success');
-      //this.removeClass('.cel', 'btn-success');
-      //this.addClass('.cel', 'btn-default');
       this.celsius = false;
       this.temperature = this.temperatureArr[1];
       this.windSpeed = this.windSpeedArr[1];
@@ -98,8 +82,6 @@ new Vue({
       ];
       this.windSpeed = this.windSpeedArr[0];
       this.windDir = this.getDirection(data.wind.deg);
-      this.addClass('#wIcon', 'wi');
-      this.addClass('#wIcon', this.icons[this.weatherIcon.substring(0, 2)]);
       this.el('body').style.background = `url(${this.photos[this.weatherIcon.substring(0, 2)]}) no-repeat center center fixed`;
       this.el('body').style.backgroundSize = 'cover'; 
     },
@@ -118,6 +100,9 @@ new Vue({
     },
     imperialClass() {
       return this.celsius ? 'btn btn-default' : 'btn btn-success';
+    },
+    iconClass() {
+      return 'wi ' + this.icons[this.weatherIcon.substring(0, 2)];
     }
   },
 });

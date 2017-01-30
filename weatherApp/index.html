@@ -11,7 +11,7 @@
 <body>
 	<div class="main" id="app">
 		<div class="weather">
-			<div id="icon" class="text-center"><h2><i id="wIcon"></i></h2></div>
+			<div id="icon" class="text-center"><h2><i id="wIcon" :class="iconClass"></i></h2></div>
 			<h2 class="text-center" id="city">{{ name }}, {{ country }}</h2>
 			<div id="temperature" class="text-center">{{ temperature }}</div>
 			<div id="clouds" class="text-center"> {{ clouds }}</div>
