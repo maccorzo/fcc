@@ -18,8 +18,8 @@
 			<div id="wind" class="text-center">{{ windSpeed }} @ {{ windDir }}</div>
 			<div class="text-center add-margin-top">
 
-				<input type="button" @click="toggleClickC()" value="C" class="btn btn-success cel">
-				<input type="button" @click="toggleClickF()" value="F" class="btn btn-default fah">
+				<input type="button" @click="toggleClickC()" value="C" :class="metricClass">
+				<input type="button" @click="toggleClickF()" value="F" :class="imperialClass">
 			</div>
 			<div class="text-center add-margin-top text-small">Photos from <a href="flickr.com">flickr.com</a>. Identified as being free of known restrictions under copyright law</div>
 		</div>

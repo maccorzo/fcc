@@ -53,19 +53,19 @@ new Vue({
     },
 
     toggleClickC() {
-      this.removeClass('.cel', 'btn-default');
-      this.addClass('.cel', 'btn-success');
-      this.removeClass('.fah', 'btn-success');
-      this.addClass('.fah', 'btn-default');
+      //this.removeClass('.cel', 'btn-default');
+      //this.addClass('.cel', 'btn-success');
+      //this.removeClass('.fah', 'btn-success');
+      //this.addClass('.fah', 'btn-default');
       this.celsius = true;
       this.temperature = this.temperatureArr[0];
       this.windSpeed = this.windSpeedArr[0];
     },
     toggleClickF() {
-      this.removeClass('.fah', 'btn-default');
-      this.addClass('.fah', 'btn-success');
-      this.removeClass('.cel', 'btn-success');
-      this.addClass('.cel', 'btn-default');
+      //this.removeClass('.fah', 'btn-default');
+      //this.addClass('.fah', 'btn-success');
+      //this.removeClass('.cel', 'btn-success');
+      //this.addClass('.cel', 'btn-default');
       this.celsius = false;
       this.temperature = this.temperatureArr[1];
       this.windSpeed = this.windSpeedArr[1];
@@ -110,5 +110,14 @@ new Vue({
   },
   mounted() {
     this.fetchLocationData();
+  },
+
+  computed: {
+    metricClass() {
+      return this.celsius ? 'btn btn-success' : 'btn btn-default';
+    },
+    imperialClass() {
+      return this.celsius ? 'btn btn-default' : 'btn btn-success';
+    }
   },
 });
