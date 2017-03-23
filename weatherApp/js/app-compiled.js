@@ -45,15 +45,11 @@ new Vue({
     el: function el(e) {
       return document.querySelector(e);
     },
-    toggleClickC: function toggleClickC() {
-      this.celsius = true;
-      this.temperature = this.temperatureArr[0];
-      this.windSpeed = this.windSpeedArr[0];
-    },
-    toggleClickF: function toggleClickF() {
-      this.celsius = false;
-      this.temperature = this.temperatureArr[1];
-      this.windSpeed = this.windSpeedArr[1];
+    toggleClick: function toggleClick(celsius) {
+      var arrPosition = celsius ? 0 : 1;
+      this.celsius = celsius;
+      this.temperature = this.temperatureArr[arrPosition];
+      this.windSpeed = this.windSpeedArr[arrPosition];
     },
     fetchLocationData: function fetchLocationData() {
       var _this = this;
