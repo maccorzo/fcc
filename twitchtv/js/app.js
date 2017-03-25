@@ -17,6 +17,7 @@ function el(element) {
 addClickListener(el('#btn_all'));
 addClickListener(el('#btn_online'), true);
 addClickListener(el('#btn_offline'), false);
+addClickListener(el('#btn_errors'), '');
 
 function ajax(url) {
   fetch(url)
@@ -30,15 +31,21 @@ function* steps() {
   while(index < streamers.length) {
     let temp;
     jsonData[index] = yield ajax(apiUrlUsers+streamers[index]);
-    temp = yield ajax(apiUrlStreams+streamers[index]);
-    jsonData[index].stream = temp.stream;
-    jsonData[index].online = jsonData[index].stream !== null;
+    if (jsonData[index].error) { 
+      jsonData[index].online = '';
+
+    } else {
+      temp = yield ajax(apiUrlStreams+streamers[index]);
+      jsonData[index].stream = temp.stream;
+      jsonData[index].online = jsonData[index].stream !== null;
+    }
     index++;  
   }
   yield showData();  
 }
 
-function showData(filter) {
+function showData(filter ) {
+  console.log(filter);
   let template = '';
   let timeout = 1;
   const filteredData = filter === undefined ? jsonData : jsonData.filter(el => el.online === filter);
@@ -53,11 +60,13 @@ function showData(filter) {
     for (let x = 0; x < filteredData.length; x += 1) {
       const {display_name, logo, name, bio, online} = filteredData[x];
       const temp = `
-      <div class="box ${online ? 'online' : 'offline'} animated bounceIn">
-      <img class="img img-responsive" src="${logo}" onerror="if (this.src != 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg') this.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg';"> 
+      <div class="col-md-6">
+      <div class="box ${online ? 'online' : (online === '' ? 'error':'offline')} animated bounceIn">
+      <img class="img img-responsive img-rounded" src="${logo}" onerror="if (this.src != 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg') this.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg';"> 
       <div class="info-box">
       <h3>${display_name !== undefined ? display_name : streamers[x]}</h3>
       <p>${bio !== null ? (bio === undefined ? 'Twitch account is closed or the account never existed!' : bio ) : ''}</p>
+      </div>
       </div>
       </div>
       `;
