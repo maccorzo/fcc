@@ -45,7 +45,6 @@ function* steps() {
 }
 
 function showData(filter ) {
-  console.log(filter);
   let template = '';
   let timeout = 1;
   const filteredData = filter === undefined ? jsonData : jsonData.filter(el => el.online === filter);
@@ -58,16 +57,21 @@ function showData(filter ) {
 
   setTimeout(function() {
     for (let x = 0; x < filteredData.length; x += 1) {
-      const {display_name, logo, name, bio, online} = filteredData[x];
+      const {display_name, logo, name, bio, online, stream} = filteredData[x];
       const temp = `
       <div class="col-md-6">
-      <div class="box ${online ? 'online' : (online === '' ? 'error':'offline')} animated bounceIn">
-      <img class="img img-responsive img-rounded" src="${logo}" onerror="if (this.src != 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg') this.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg';"> 
-      <div class="info-box">
-      <h3>${display_name !== undefined ? display_name : streamers[x]}</h3>
-      <p>${bio !== null ? (bio === undefined ? 'Twitch account is closed or the account never existed!' : bio ) : ''}</p>
-      </div>
-      </div>
+        <div class="box ${online ? 'online' : (online === '' ? 'error':'offline')} animated bounceIn">
+          <img class="img img-responsive img-rounded" src="${logo}" onerror="if (this.src != 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg') this.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg';"> 
+          <div class="info-box">
+            <h3>
+            <a href="${bio === undefined ? '#' : 'https://www.twitch.tv/' + display_name}">
+            ${display_name !== undefined ? display_name : streamers[x]}
+            </a>
+            </h3>
+            <p>${bio !== null ? (bio === undefined ? 'Twitch account is closed or the account never existed!' : bio ) : ''}</p>
+            <h4>${stream ? '<a href="https://www.twitch.tv/'+ display_name +'">Now streaming: ' + stream.game + '</a>': ''}</h4>
+          </div>
+        </div>
       </div>
       `;
       template += temp;
