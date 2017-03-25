@@ -2,6 +2,8 @@
 const apiUrlUsers = 'https://wind-bow.glitch.me/twitch-api/users/';
 const apiUrlStreams = 'https://wind-bow.glitch.me/twitch-api/streams/';
 const jsonData = [];
+const streamers = ['not__a___user__', 'EULCS1','ESL_SC2', 'OgamingSC2', 'cretetion', 'freecodecamp', 'storbeck', 'habathcx', 'RobotCaleb', 'noobs2ninjas'];
+
 
 function addClickListener(el, online) {
   el.addEventListener('click', function() {
@@ -23,7 +25,6 @@ function ajax(url) {
 }
 
 function* steps() {
-  const streamers = ['EULCS1','ESL_SC2', 'OgamingSC2', 'cretetion', 'freecodecamp', 'storbeck', 'habathcx', 'RobotCaleb', 'noobs2ninjas']
   let index = 0;
   // push users and streamers in array
   while(index < streamers.length) {
@@ -52,11 +53,11 @@ function showData(filter) {
     for (let x = 0; x < filteredData.length; x += 1) {
       const {display_name, logo, name, bio, online} = filteredData[x];
       const temp = `
-      <div class="box ${online === true ? 'online' : 'offline'} animated bounceIn">
-      <img class="img img-responsive" src="${logo}"> 
+      <div class="box ${online ? 'online' : 'offline'} animated bounceIn">
+      <img class="img img-responsive" src="${logo}" onerror="if (this.src != 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg') this.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/515225/sorry.svg';"> 
       <div class="info-box">
-      <h3>${display_name}</h3>
-      <p>${bio !== null ? bio : ''}</p>
+      <h3>${display_name !== undefined ? display_name : streamers[x]}</h3>
+      <p>${bio !== null ? (bio === undefined ? 'Twitch account is closed or the account never existed!' : bio ) : ''}</p>
       </div>
       </div>
       `;
