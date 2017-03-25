@@ -1,6 +1,6 @@
 /*eslint-disable */
-const apiUrlUsers = 'https://wind-bow.gomix.me/twitch-api/users/';
-const apiUrlStreams = 'https://wind-bow.gomix.me/twitch-api/streams/';
+const apiUrlUsers = 'https://wind-bow.glitch.me/twitch-api/users/';
+const apiUrlStreams = 'https://wind-bow.glitch.me/twitch-api/streams/';
 const jsonData = [];
 
 function addClickListener(el, online) {
