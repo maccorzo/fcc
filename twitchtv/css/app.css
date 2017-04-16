@@ -1,20 +1,77 @@
+.main {
+  min-height: 95vh;
+}
+.my-header {
+  background-color: #ccc;
+}
+
 .box {
-  border: 1px solid black;
   display: flex;
   margin: 1em;
   padding: 0.25em; 
+  animation-duration: 1s;
+  box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.50);
 }
 .box img {
   height: 150px;
+  margin: 0.5em;
 }
+.box:last-child {
+  margin-bottom: 2em;
+}
+
 .info-box {
   margin: 0 1em;
+  width: 100%;
+  height: 200px;
+
+}
+.info-box a {
+  color: #222222;
+}
+.info-box a:hover {
+  text-decoration: none;
 }
 
 .online {
-  background-color: green;
+  background-color: #6cba7a;
 }
 
 .offline {
-  background-color: red;
+  background-color: #e7939a;
+}
+.error {
+  background-color: #f0ad4e;
+}
+.btn_row {
+  margin-top: 3em;
+}
+
+.loading {
+  margin-top: 3em;
+}
+
+footer {
+ margin: 0;
+ min-height: 5vh;
+ background-color: #ccc;
+}
+
+button {
+  width: 6em;
+}
+
+button:not(:last-of-type) {
+  margin-right: 1em;
+}
+
+footer > p {
+  margin: 0;
+  padding-top: 0.5em;
+  font-size: 2rem;
+
+}
+
+footer > p > a {
+  color: black;
 }

@@ -11,15 +11,15 @@
 <body>
 	<div class="main" id="app">
 		<div class="weather">
-			<div id="icon" class="text-center"><h2><i id="wIcon"></i></h2></div>
+			<div id="icon" class="text-center"><h2><i id="wIcon" :class="iconClass"></i></h2></div>
 			<h2 class="text-center" id="city">{{ name }}, {{ country }}</h2>
 			<div id="temperature" class="text-center">{{ temperature }}</div>
 			<div id="clouds" class="text-center"> {{ clouds }}</div>
 			<div id="wind" class="text-center">{{ windSpeed }} @ {{ windDir }}</div>
 			<div class="text-center add-margin-top">
 
-				<input type="button" @click="toggleClickC()" value="C" class="btn btn-success cel">
-				<input type="button" @click="toggleClickF()" value="F" class="btn btn-default fah">
+				<input type="button" @click="toggleClick(true)" value="C" :class="metricClass">
+				<input type="button" @click="toggleClick(false)" value="F" :class="imperialClass">
 			</div>
 			<div class="text-center add-margin-top text-small">Photos from <a href="flickr.com">flickr.com</a>. Identified as being free of known restrictions under copyright law</div>
 		</div>

@@ -9,10 +9,12 @@ new Vue({
     name: 'Loading . ',
     country: '...',
     temperature: '',
+    temperatureArr: [],
     clouds: '',
     weatherIcon: '',
     windDir: '',
     windSpeed: '',
+    windSpeedArr: [],
     celsius: true,
     photos: {
       '01': 'https://c1.staticflickr.com/9/8658/16173761684_2468bf3588_k.jpg',
@@ -43,29 +45,11 @@ new Vue({
     el: function el(e) {
       return document.querySelector(e);
     },
-    addClass: function addClass(e, c) {
-      var el = this.el(e);
-      el.classList.add(c);
-    },
-    removeClass: function removeClass(e, c) {
-      var el = this.el(e);
-      el.classList.remove(c);
-    },
-    toggleClickC: function toggleClickC() {
-      this.removeClass('.cel', 'btn-default');
-      this.addClass('.cel', 'btn-success');
-      this.removeClass('.fah', 'btn-success');
-      this.addClass('.fah', 'btn-default');
-      this.celsius = true;
-      this.fetchLocationData();
-    },
-    toggleClickF: function toggleClickF() {
-      this.removeClass('.fah', 'btn-default');
-      this.addClass('.fah', 'btn-success');
-      this.removeClass('.cel', 'btn-success');
-      this.addClass('.cel', 'btn-default');
-      this.celsius = false;
-      this.fetchLocationData();
+    toggleClick: function toggleClick(celsius) {
+      var arrPosition = celsius ? 0 : 1;
+      this.celsius = celsius;
+      this.temperature = this.temperatureArr[arrPosition];
+      this.windSpeed = this.windSpeedArr[arrPosition];
     },
     fetchLocationData: function fetchLocationData() {
       var _this = this;
@@ -89,13 +73,13 @@ new Vue({
     setWeatherData: function setWeatherData(data) {
       this.name = data.name;
       this.country = data.sys.country;
-      this.temperature = Math.floor(data.main.temp) + '\xB0 ' + this.units[1];
+      this.temperatureArr = [Math.floor(data.main.temp) + '\xB0 ' + this.metric[1], Math.floor(data.main.temp * 7 / 5 + 32) + '\xB0 ' + this.imperial[1]];
+      this.temperature = this.temperatureArr[0];
       this.clouds = data.weather[0].main;
       this.weatherIcon = data.weather[0].icon;
-      this.windSpeed = 'Wind ' + data.wind.speed.toFixed(1) + ' ' + this.units[2];
+      this.windSpeedArr = ['Wind ' + data.wind.speed.toFixed(1) + ' ' + this.metric[2], 'Wind ' + (data.wind.speed * 3600 / 1609).toFixed(1) + ' ' + this.imperial[2]];
+      this.windSpeed = this.windSpeedArr[0];
       this.windDir = this.getDirection(data.wind.deg);
-      this.addClass('#wIcon', 'wi');
-      this.addClass('#wIcon', this.icons[this.weatherIcon.substring(0, 2)]);
       this.el('body').style.background = 'url(' + this.photos[this.weatherIcon.substring(0, 2)] + ') no-repeat center center fixed';
       this.el('body').style.backgroundSize = 'cover';
     },
@@ -106,5 +90,18 @@ new Vue({
   },
   mounted: function mounted() {
     this.fetchLocationData();
+  },
+
+
+  computed: {
+    metricClass: function metricClass() {
+      return this.celsius ? 'btn btn-success' : 'btn btn-default';
+    },
+    imperialClass: function imperialClass() {
+      return this.celsius ? 'btn btn-default' : 'btn btn-success';
+    },
+    iconClass: function iconClass() {
+      return 'wi ' + this.icons[this.weatherIcon.substring(0, 2)];
+    }
   }
 });

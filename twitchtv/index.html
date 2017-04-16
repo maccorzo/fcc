@@ -5,18 +5,37 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>twitch streamers</title>
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/157fb891d3.js"></script>
 
 </head>
 <body>
-<div class="container-fluid text-center">
-  <h1>twitch stream</h1>
-</div>
-<div class="container">
-    <div id="app">
+  <div class="main">
+    <div class="container-fluid text-center my-header">
+      <h1>twitch stream</h1>
     </div>
+    <div class="container">
+      <div class="btn_row text-center">
+        <button type="button" class="btn btn-info" id="btn_all">All</button>
+        <button type="button" class="btn btn-success" id="btn_online">Online</button>
+        <button type="button" class="btn btn-danger" id="btn_offline">Offline</button>
+        <button type="button" class="btn btn-warning" id="btn_errors">Errors</button>
+      </div>
+      <hr/>
+      <div id="app" class="text-center">
+        <i class="fa fa-spinner fa-5x fa-pulse loading" aria-hidden="true"></i>
+      </div>
+
+    </div>
+
   </div>
 
+  <footer class="text-center">
+  <p>
+    &copy; <a href="https://www.freecodecamp.com/maccorzo">maccorzo</a>
+  </p>
+  </footer>
   <script src="js/app.js"></script>
 </body>
 </html>
