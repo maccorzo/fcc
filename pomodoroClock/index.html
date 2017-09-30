@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pomodoro Clock</title>
+  <link rel="stylesheet" href="app.css">
+  
+</head>
+<body>
+  <div class="container">
+    <h1 class="is-size-1-desktop">Pomodoro Clock</h1>
+
+    <div class="pomodoro">
+      <div class="settings">
+        <div class="text">
+          <h2>Break time</h2>
+          <div class="break">
+            <i class="fa fa-minus" data-key="-1" data-field="break" aria-hidden="true"></i>
+            <div class="input-field break-length">5</div>
+            <i class="fa fa-plus" data-key="1" data-field="break" aria-hidden="true"></i>
+
+          </div>
+        </div>
+        <div class="text">
+          <h2>Session time</h2>
+
+          <div class="session">
+            <i class="fa fa-minus" data-key="-1" data-field="session" aria-hidden="true"></i>
+            <div class="input-field session-length">25</div>
+            <i class="fa fa-plus" data-key="1" data-field="session" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="volume">
+        <i class="fa fa-volume-up" id="mute-audio" aria-hidden="true" text="test"></i>
+      </div>
+      <div class="clock">
+        <div class="circle">
+          <div class="hand"></div>
+          <i class="fa fa-play" id="start-button" aria-hidden="true"></i>
+          <span class="current-run"></span>
+          <div class="time">25:00</div>
+        </div>
+
+      </div>
+      <progress class="progress is-danger" value="90" max="100">90%</progress>
+      <div class="reset"><a class="button is-white" onclick="resetPomodoro()">Reset clock</a></div>
+    </div>
+  </div>
+    <audio src="horn.mp3">horn</audio>
+    <script src="app.js"></script> 
+</body>
+</html>
